@@ -1,0 +1,25 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Build and deploy
+        run: |
+          cd public
+          echo '<meta http-equiv="refresh" content="0;URL=./index.html">' > index.html
+          echo 'Redirecting...'
